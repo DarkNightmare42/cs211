@@ -16,7 +16,6 @@ bool ok(int q[], int c) {
 }
 
 void print(int q[]) {
-    cout << "print started " << endl;
     static int numSolutions = 0;
     cout << "Solution #" << ++numSolutions << ": ";
     for(int i = 0; i < 8; i++) cout << q[i];
