@@ -11,7 +11,7 @@ bool ok(int q[], int c){
 		if(q[c] == q[i]) return false;	
 	}
 	
-	for(int i = 0; adj[c][i] != -1; i++){
+	for(int i = 0; i < c; i++){
 		if(abs(q[c] - q[adj[c][i]]) == 1) return false;
 	}
 	
@@ -21,7 +21,8 @@ bool ok(int q[], int c){
 void print(int q[]){
     static int count = 0;
     cout << "Solution number: " << ++count << endl << endl;
-	cout<<" " <<q[1] <<q[4] <<endl <<q[0] <<q[2] <<q[5] <<q[7] <<endl <<" " <<q[3] <<q[6] <<" " <<endl << endl;
+	cout<< " " << q[1] << q[4] << endl << q[0] << q[2] << q[5] 
+	<< q[7] << endl <<" " << q[3] << q[6] <<" " << endl << endl;
 }
 
 void backtrack(int c){
