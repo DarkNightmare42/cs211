@@ -5,7 +5,9 @@ using namespace std;
 int main(){
 	int q[8] = {}, c = 0;
 	int count = 0;
-	static int adj[8][5] = {{-1}, {0, -1}, {0, 1, -1},{0, 2, -1}, {1, 2, -1}, {1, 2, 3, 4, -1}, {2, 3, 5, -1}, {4, 5, 6, -1}};
+	static int adj[8][5] = {{-1}, {0, -1}, {0, 1, -1},{0, 2, -1}, 
+				{1, 2, -1}, {1, 2, 3, 4, -1}, {2, 3, 5, -1}, 
+				{4, 5, 6, -1}};
 
 	q[0] = 1;
 	
@@ -31,7 +33,8 @@ int main(){
 	goto nextNumber;
 	
 	print:	cout << "Solution number: " << ++count << endl << endl;
-	cout<<" " <<q[1] <<q[4] <<endl <<q[0] <<q[2] <<q[5] <<q[7] <<endl <<" " <<q[3] <<q[6] <<" " <<endl << endl;
+	cout<<" " <<q[1] <<q[4] <<endl <<q[0] <<q[2] <<q[5] <<q[7] 
+		<<endl <<" " <<q[3] <<q[6] <<" " <<endl << endl;
 	goto backtrack;
 
 }
