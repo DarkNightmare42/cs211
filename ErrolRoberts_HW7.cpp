@@ -1,63 +1,55 @@
-//
-//  main.cpp
-//  8NumbersInACross
-//
-//  Created by Errol Roberts on 3/9/19.
-//  Copyright © 2019 Errol Roberts. All rights reserved.
-//
+//fourth time writing this program
+//this keyboard is kinda nice for typing code after all
 
 #include <iostream>
 #include <cmath>
 using namespace std;
 
-bool ok(int cross[], int current){
-    static int adjacent_table[8][5] = {{-1}, {0, -1}, {0, 1, -1},{0, 2, -1}, {1, 2, -1}, {1, 2, 3, 4, -1}, {2, 3, 5, -1}, {4, 5, 6, -1}};
-    int i = 0;
-    int neighborbox = adjacent_table[cross[i]][i];
-    
-    while(neighborbox != -1){
-        if(current == neighborbox) return false;
-        if(abs(current - neighborbox) == 1) return false;
-        i++;
+bool ok(int q[], int c){
+    static int adj[8][5] = {{-1}, {0, -1}, {0, 1, -1},{0, 2, -1}, {1, 2, -1}, {1, 2, 3, 4, -1}, {2, 3, 5, -1}, {4, 5, 6, -1}};
+    for(int i = 0; i < c; i++){
+        if(q[c] == q[i]) return false;
     }
+    
+    for(int i = 0; adj[c][i] != -1; i++){
+        if(abs(q[c] - q[adj[c][i]]) == 1) return false;
+    }
+    
     return true;
 }
 
-void print(int cross[]){
+void print(int q[]){
     static int count = 0;
-    for(int i = 0; i < 8; i++){
-        count++;
-        cout << "Solution number " << count << " is :" << cross[i] << endl;
-    }
+    cout << "Solution number: " << ++count << endl << endl;
+    cout<< " " << q[1] << q[4] << endl << q[0] << q[2] << q[5]
+    << q[7] << endl <<" " << q[3] << q[6] <<" " << endl << endl;
 }
 
-void backtrack(int current){
-    current--;
-    if(current == -1) exit(0);
+void backtrack(int& c){
+    c--;
+    if(c == -1) exit(0);
 }
 
 int main(){
-    int current = 0, cross[8] = {};
-   // int set[8] = {1, 2, 3, 4, 5, 6, 7, 8};
-   // int i = 0;
-    cross[0] = 0;
-    cross[current] = 0;
+    int q[8] = {}, c;
+    c = 0;
+    q[0] = 1;
     
-    while(current >= 0){
-        current++;
-        if(current == 8){
-            print(cross);
-            backtrack(current);
-        }
-        else cross[current] = 0;
-        while(current >= 0){
-            cross[current]++;
-            if(cross[current] == 9){
-                backtrack(current);
-                continue;
+    while(true){
+        while (c >= 0) {
+            c++;
+            if (c == 8) {
+                print(q);
+                backtrack(c);
             }
-            if(ok(cross, current)){
-                break;
+            else q[c] = 0;
+            while (c >= 0) {
+                q[c]++;
+                if (q[c] > 8) {
+                    backtrack(c);
+                    continue;
+                }
+                else if(ok(q, c)) break;
             }
         }
     }
