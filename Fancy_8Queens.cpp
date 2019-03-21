@@ -1,4 +1,3 @@
-//
 //  main.cpp
 //  Fancy_8Queens
 //
@@ -16,12 +15,8 @@ void print(int q[]) {
     int i, j, k, l;
     typedef char box[5][7];   // box is now a data type: a 5x7 2D array of characters
     box bb, wb, *board[8][8]; // bb and wb are boxes (5x7 arrays).  board is an 8x8 array of pointers to boxes.
-    // You don't have to clean up the board after printing, because it's not static,
-    // so it'll be reinitialized the next time you call the funtion.
-    
-    // Fill in bb (black box) and wb (white box).  They each represent a square of the chessboard.
-    // You only need to create one of each, since the chessboard can contain many pointers to the same box.
-    for (i=0; i<5; i++)
+  
+ for (i=0; i<5; i++)
         for (j=0; j<7; j++) {
             bb[i][j] = ' ';
             wb[i][j] = char(219);
@@ -44,19 +39,15 @@ void print(int q[]) {
     for(i=0; i<8; i++)
         for(j=0; j<8; j++)
             if((i+j)%2 == 0){
-                if(q[j] > 0) board[i][j] = &bq;
+                if(q[i] == j) board[i][j] = &bq; //print black queen
                 else board[i][j] = &wb;
             }
             else {
-                if(q[j] > 0) board[i][j] = &wq;
+                if(q[i] == j) board[i][j] = &wq; //prints white queen
                 else board[i][j] = &bb;
             }
-    
-    // Set up the current solution on the chessboard by placing pointers to bq and wq in the appropriate squares.
-    // Place black queens on white squares and white queens on black squares, so that you will be able to see them when printing.
-    // Write the code.
-    
-    cout << "Solution #" << ++solution << ":\n ";
+  
+    cout << ++solution << " solution(s) found." << ":\n ";
     
     // Print upper border
     for (i=0; i<7*8; i++)
@@ -119,5 +110,4 @@ int main() {
             }
         }
     }
-    return 0;
 }
